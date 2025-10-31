@@ -1,0 +1,58 @@
+email:
+  sender: xx@xx.com
+  receiver: xx@xx.com
+  smtp:
+    server: smtp.qq.com
+    port: 465
+    auth_code: xxxxxxxxxxxxxxxx
+headers:
+  accept: '*/*'
+  accept-language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5
+  content-type: application/x-www-form-urlencoded; charset=UTF-8
+  origin: https://yjs1.ustc.edu.cn
+  priority: u=1, i
+  sec-ch-ua: '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"'
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: '"Windows"'
+  sec-fetch-dest: empty
+  sec-fetch-mode: cors
+  sec-fetch-site: same-origin
+  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/141.0.0.0 Safari/537.36
+  x-requested-with: XMLHttpRequest
+timeout: 10
+retry_attempts: 3
+url:
+  search_report: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/modules/xsbgxk/wxbgbgdz.do
+  grab_courses: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/xsbgxkController/selectBg.do
+  withdraw_courses: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/xsbgxkController/cancelBg.do
+data-raw:
+  '*order': -BGSJ
+  querySetting:
+  - name: YXDM
+    caption: 院系
+    linkOpt: AND
+    builderList: cbl_m_List
+    builder: m_value_equal
+    value: 011,201,210,219,225,229,A13,A14
+    value_display: 计算机科学与技术学院,研究生院,信息科学技术学院,微电子学院,软件学院,人工智能与数据科学学院,软件学院合肥,软件学院苏州
+  - name: '*order'
+    value: -BGSJ
+    linkOpt: AND
+    builder: equal
+  - name: _gotoFirstPage
+    value: true
+    linkOpt: AND
+    builder: equal
+  pageSize: 100
+  pageNumber: 1
+cookies:
+  GS_DBLOGIN_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  GS_SESSIONID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  EMAP_LANG: zh
+  THEME: blue
+  _WEU: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  route: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+particular_course:
+  BGBM: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+interval: 30
