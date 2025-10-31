@@ -114,9 +114,9 @@ def filter_and_write_reports(
         bgbm = item.get("BGBM")
         bgtmzw = item.get("BGTMZW")
 
-        # --- 条件 0: DD 必须包含“高新校区”
-        if dd is None or not ("高新" in dd or dd.startswith("g")):
-            continue
+        # --- 条件 0: DD 必须包含 "高新"或者 "G" 或者 "直播"
+        # if dd is None or not ("高新" in dd or "G" in dd or "g" in dd or "直播" in dd or "先" in dd):
+        #     continue
 
         # --- 条件 1: BGSJ（报告时间） 和 JZSJ（截至时间）必须有效且晚于今天 ---
         bgsj_dt = parse_date(bgsj_str)
