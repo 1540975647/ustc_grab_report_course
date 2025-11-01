@@ -30,9 +30,9 @@ timeout: 10
 retry_attempts: 3
 base_url: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc
 urls:
-  search_report: ${base_url}/modules/xsbgxk/wxbgbgdz.do
-  grab_courses: ${base_url}/xsbgxkController/selectBg.do
-  withdraw_courses: ${base_url}/xsbgxkController/cancelBg.do
+  search_report: /modules/xsbgxk/wxbgbgdz.do
+  grab_courses: /xsbgxkController/selectBg.do
+  withdraw_courses: /xsbgxkController/cancelBg.do
 data-raw:
   # 分页查询条件信息
   '*order': -BGSJ
