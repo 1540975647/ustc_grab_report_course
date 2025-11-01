@@ -17,9 +17,8 @@ def runAll():
     try:
         while True:
             grab_success, first_item = grab_courses()
-
             if not grab_success:
-                break
+                return
             send_success_email(first_item)
             search_report.search_report_and_write()
 

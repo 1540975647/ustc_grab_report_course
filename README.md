@@ -58,21 +58,25 @@ handle_post_result.py
 
 #### 3.1 下载到本地
 ```bash
-$ sudo pip install PyYAML python-dotenv requests             # 安装依赖
+sudo pip install PyYAML python-dotenv requests             # 安装依赖
 ```
 ```bash
-$ git clone https://github.com/1540975647/ustc_grab_report_course.git
+git clone https://github.com/1540975647/ustc_grab_report_course.git
 ```
 
 ```bash
-$ cd ustc_grab_report_course/
+cd ustc_grab_report_course/
 ```
 
 
 #### 3.2 在`config.yml`中配置`email` ，`cookies`，`particular_course`和查询信息
 
 ```bash
-$ vim config.yml
+ vim config.yml
+```
+
+```bash
+:i
 ```
 
 ```yaml
@@ -133,9 +137,11 @@ $ vim exclude.json
   ]
 }
 ```
+
 ```bash
 :wq
 ```
+
 *此处配置的内容仅针对于自动搜索课程并选课的逻辑，如手动或使用`grab_particular_course.py`对**排除的课程**选课，仍可以选课成功*
 
 
@@ -144,7 +150,11 @@ $ vim exclude.json
 由于需要一直发送搜索信息确保有报告上新，故建议使用定时任务
 
 ```bash
-$ crontab -e                                                  # 编辑定时任务
+crontab -e                                                  # 编辑定时任务
+```
+
+```bash
+:i
 ```
 
 ```
@@ -155,7 +165,8 @@ $ crontab -e                                                  # 编辑定时任�
 ```bash
 :wq                                                           # 退出编辑
 ```
+
 ```bash
-$ crontab -l                                                  # 查看定时任务
+crontab -l                                                  # 查看定时任务
 ```
 
