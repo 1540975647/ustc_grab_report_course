@@ -1,15 +1,15 @@
 email:
-  # 邮件发送人 
+  # 邮件发送人
   sender: xx@xx.com                                           # 必须修改
-  # 邮件接收人          
+  # 邮件接收人
   receiver: xx@xx.com                                         # 必须修改
-  # 需开启SMTP          
-  smtp:          
-    # SMTP邮件服务器，根据使用的SMTP服务器修改          
-    server: smtp.qq.com             
-    # SMTP邮件服务器端口号，根据使用的SMTP服务器修改          
-    port: 465          
-    # SMTP邮件服务器密钥          
+  # 需开启SMTP
+  smtp:
+    # SMTP邮件服务器，根据使用的SMTP服务器修改
+    server: smtp.qq.com
+    # SMTP邮件服务器端口号，根据使用的SMTP服务器修改
+    port: 465
+    # SMTP邮件服务器密钥
     auth_code: xxxxxxxxxxxxxxxxxxxxx                          # 必须修改
 headers:
   accept: '*/*'
@@ -33,7 +33,7 @@ url:
   grab_courses: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/xsbgxkController/selectBg.do
   withdraw_courses: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/xsbgxkController/cancelBg.do
 data-raw:
-  # 分页查询条件信息 
+  # 分页查询条件信息
   '*order': -BGSJ
   querySetting:                                               # 非必须
   - name: YXDM
@@ -58,7 +58,7 @@ cookies:
   GS_SESSIONID: xxxxxxxxxxxxxxxxxxxxx                         # 必须修改
   EMAP_LANG: zh                                               # 非必须
   THEME: blue                                                 # 非必须
-  _WEU: xxxxxxxxxxxxxxxxxxxxx                                 # 必须定时修改(可使用main_upadte_weu.py)
+  _WEU: xxxxxxxxxxxxxxxxxxxxx                                 # 必须定时修改(可使用main_update_weu.py)
   route: xxxxxxxxxxxxxxxxxxxxx                                # 必须修改
 particular_course:
   # 用于保活cookie中_WEU字段的特殊课程编号
