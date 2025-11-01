@@ -72,11 +72,7 @@ cd ustc_grab_report_course/
 #### 3.2 在`config.yml`中配置`email` ，`cookies`，`particular_course`和查询信息
 
 ```bash
- vim config.yml
-```
-
-```bash
-:i
+vim config.yml
 ```
 
 ```yaml
@@ -125,7 +121,7 @@ particular_course:
 
 **注意**：最后一个课程后不要添加`,`
 ```bash
-$ vim exclude.json
+vim exclude.json
 ```
 
 ```json
@@ -151,10 +147,6 @@ $ vim exclude.json
 
 ```bash
 crontab -e                                                  # 编辑定时任务
-```
-
-```bash
-:i
 ```
 
 ```
