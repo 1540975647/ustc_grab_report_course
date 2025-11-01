@@ -41,7 +41,9 @@ cookies = _yaml_data.get("cookies")
 # hearders
 headers: Dict[str, str] = _yaml_data.get("headers", {})
 # url
-url: Dict[str, str] = _yaml_data.get("url", {})
+base_url = _yaml_data.get("base_url", "")
+urls: Dict[str, str] = _yaml_data.get("urls", {})
+url = {k: f"{base_url}/{v}" for k, v in urls.items()}
 # 过期时间
 timeout: int = _yaml_data.get("timeout")
 # 构建查询字符串
