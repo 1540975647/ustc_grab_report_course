@@ -28,10 +28,11 @@ headers:
   x-requested-with: XMLHttpRequest
 timeout: 10
 retry_attempts: 3
-url:
-  search_report: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/modules/xsbgxk/wxbgbgdz.do
-  grab_courses: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/xsbgxkController/selectBg.do
-  withdraw_courses: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/xsbgxkController/cancelBg.do
+base_url: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc
+urls:
+  search_report: ${base_url}/modules/xsbgxk/wxbgbgdz.do
+  grab_courses: ${base_url}/xsbgxkController/selectBg.do
+  withdraw_courses: ${base_url}/xsbgxkController/cancelBg.do
 data-raw:
   # 分页查询条件信息
   '*order': -BGSJ
