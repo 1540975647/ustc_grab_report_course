@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# utils/handle_post_result.py
 import os
 from pathlib import Path
 from typing import Final
@@ -8,10 +12,10 @@ sentence: Final[str] = "Client Error"
 
 def handle_post_result(post_result: str) -> bool:
     """
-    处理 POST 请求结果，判断是否因 cookie 过期触发 403 错误。
+    处理 POST 请求结果，判断是否因 cookie 过期触发 401或403 错误。
 
     返回:
-        bool: True 表示“首次检测到 403 错误，应发送邮件”；False 表示“无需处理”。
+        bool: True 表示“首次检测到错误，应发送邮件”；False 表示“无需处理”。
     """
     if sentence not in post_result:
         # cookie 未过期：清空标记文件

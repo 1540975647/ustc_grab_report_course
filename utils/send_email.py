@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# utils/send_email.py
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -39,7 +43,6 @@ def build_email_and_send(subject: str, html: str):
 
 
 def send_success_email(report_item: dict):
-
     # 发送选课成功邮件（HTML 格式）
     subject = "选课成功！报告已锁定"
     bgtmzw = report_item.get("BGTMZW", "未知")
@@ -59,6 +62,7 @@ def send_success_email(report_item: dict):
 
 
 def send_fail_email(post_result: str):
+    # 发送查询课程失败邮件（HTML 格式）
     subject = "查询课程失败，cookie已过期"
     html = f"""
         <h2>查询课程失败</h2>

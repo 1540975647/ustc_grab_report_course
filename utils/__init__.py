@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # utils/__init__.py
 from .search_report import search_report_and_write
 from .grab_courses import grab_courses  # 假设函数在此文件中

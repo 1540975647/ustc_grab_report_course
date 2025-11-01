@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# utils/search_report.py
 """
-Script: fetch_filtered_bggl_data.py
-Description: 
+Description:
     使用 requests 库向 USTC 研究生报到管理系统发送带过滤条件的 POST 请求，
     查询特定院系（如计算机、软件学院等）的学生报到数据。
     已完整保留原始请求的 headers、cookies 和复杂 data 参数。
 
-    注意：Cookie 中的 GS_DBLOGIN_TOKEN 和 GS_SESSIONID 具有时效性，请确保有效。
+    注意：Cookie 中的 GS_DBLOGIN_TOKEN , GS_SESSIONID, _WEU 具有时效性，请确保有效。
 """
 
 import requests

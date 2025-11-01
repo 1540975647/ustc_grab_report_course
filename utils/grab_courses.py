@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# utils/grab_courses.py
 import json
-import requests
-import update_weu
 from typing import Any
-from pathlib import Path
-from settings import RESPONSE_FILE, COURSE_FILE
-from settings import url, headers, cookies, timeout
+from . import grab_particular_course
+from settings import COURSE_FILE
 
 
 def load_bgbm_from_json(filename: str) -> None | tuple[None, None] | tuple[Any, Any]:
@@ -44,41 +42,11 @@ def grab_courses():
         print("无可用 BGBM，终止选课请求。")
         return False, None
 
-    # 2. 构造动态 data
-    payload = {
-        "data": json.dumps({"BGBM": new_bgbm}, ensure_ascii=False)
-    }
-
-    # 3. 发送请求
-    session = requests.Session()
-    try:
-        response = session.post(
-            url["grab_courses"],
-            headers=headers,
-            cookies=cookies,
-            data=payload,
-            timeout=timeout
-        )
-        # 更新_WEU
-        update_weu.update_weu(response.headers)
-
-        Path(RESPONSE_FILE).write_text(response.text, encoding="utf-8")
-
-        print(f"\n选课请求已发送")
-        print(f"状态码: {response.status_code}")
-        print("响应内容:", end="\t")
-        grab_course_res = json.loads(response.text)
-
-        grab_course_res_headers = response.headers
-        # print(grab_course_res_headers)
-        print (response.text)
-        if grab_course_res.get("code") == "0" and grab_course_res.get("msg") == "成功":
-            return True, first_item
-        else:
-            return False, None
-
-    except requests.RequestException as e:
-        print(f"请求失败: {e}")
+    # 2. 尝试发送选课请求
+    grab_success = grab_particular_course.grab_particular_course(new_bgbm)
+    if grab_success:
+        return True, first_item
+    else:
         return False, None
 
 

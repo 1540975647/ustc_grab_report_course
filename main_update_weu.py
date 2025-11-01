@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# main_update_weu.py
 from time import sleep
 
 from utils.grab_particular_course import grab_particular_course

@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# build_query_string.py
 import yaml
 import json
 from settings import CONFIG_YAML_PATH

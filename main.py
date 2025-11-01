@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # main.py
 from utils import search_report, grab_courses, send_success_email, send_fail_email, handle_post_result
 
@@ -14,8 +17,7 @@ def runAll():
     try:
         while True:
             grab_success, first_item = grab_courses()
-            # print("grab_success:", grab_success)
-            # print("first_item:", first_item)
+
             if not grab_success:
                 break
             send_success_email(first_item)
