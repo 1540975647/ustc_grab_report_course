@@ -3,9 +3,11 @@
 
 # main.py
 from utils import search_report, grab_courses, send_success_email, send_fail_email, handle_post_result
-
+from time import sleep
+import random
 
 def runAll():
+    sleep(random.randint(0, 10))
     # 示例：发送查询课程请求
     has_searched_useful_courses, post_result = search_report.search_report_and_write()
     if handle_post_result(post_result):
