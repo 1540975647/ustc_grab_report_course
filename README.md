@@ -72,6 +72,7 @@ cd ustc_grab_report_course/
 #### 3.2 在`config.yml`中配置`email` ，`cookies`，`particular_course`和查询信息
 
 ```bash
+cp config.template.yml config.yml
 vim config.yml
 ```
 
