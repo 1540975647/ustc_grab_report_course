@@ -9,7 +9,7 @@ User=root
 # 工作路径
 WorkingDirectory=/root/ustc_grab_report_course
 # ustc_grab_runner.sh脚本路径
-ExecStart=/root/ustc_grab_runner.sh
+ExecStart=/root/ustc_grab_report_course/ustc_grab_runner.sh
 Restart=always
 RestartSec=5
 StandardOutput=journal
