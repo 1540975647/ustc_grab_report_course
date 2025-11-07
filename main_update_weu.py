@@ -9,7 +9,7 @@ from utils.withdraw_particular_course import withdraw_particular_course
 from settings import *
 
 def run_keep_alive():
-    sleep(random.randint(0, 100))
+    sleep(random.randint(0, 60))
     print("开始保活_WEU...")
     # 保活时首先退课
     print("开始退课")
