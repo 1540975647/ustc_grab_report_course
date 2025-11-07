@@ -68,6 +68,10 @@ while true; do
     ((minute_counter = (minute_counter + 1) % 30))
 
     # 精确控制时间
+    end_sec=$(date +%s)
+    elapsed=$((end_sec - start_sec))
+    sleep_sec=$((60 - elapsed))
+
     if (( sleep_sec > 0 )); then
         # 正常等待补齐一分钟
         sleep "$sleep_sec"
