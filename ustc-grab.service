@@ -1,0 +1,28 @@
+[Unit]
+Description=USTC Grab Report Course Scheduler (main.py every 1min, update every 30min)
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+# 工作路径
+WorkingDirectory=/root/ustc_grab_report_course
+# ustc_grab_runner.sh脚本路径
+ExecStart=/root/ustc_grab_runner.sh
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment=PYTHONUNBUFFERED=1
+
+# 安全与资源限制
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=no
+# 读写路径
+ReadWritePaths=/root/ustc_grab_report_course /var/log/ustc_grab
+
+[Install]
+WantedBy=multi-user.target

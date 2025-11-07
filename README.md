@@ -140,10 +140,15 @@ vim exclude.json
 
 *此处配置的内容仅针对于自动搜索课程并选课的逻辑，如手动或使用`grab_particular_course.py`对**排除的课程**选课，仍可以选课成功*
 
-
 #### 3.4 配置定时任务
 
 由于需要一直发送搜索信息确保有报告上新，故建议使用定时任务
+
+**注：下方定时任务配置2选1即可**
+
+#### 3.4.1 使用`cron`配置定时任务
+
+
 
 ```bash
 crontab -e                                                  # 编辑定时任务
@@ -155,10 +160,62 @@ crontab -e                                                  # 编辑定时任务
 ```
 
 ```bash
-:wq                                                           # 退出编辑
+:wq                                                         # 退出编辑
 ```
 
 ```bash
 crontab -l                                                  # 查看定时任务
+```
+
+#### 3.4.2 使用`ustc_grab_runner.sh`配置定时任务
+
+`ustc_grab_runner.sh`是一个可自动执行`3.4.1`中两个`Python`文件的脚本，下方会将该脚本设定为一个`service`，可以直接设置开关和开机自启
+
+```bash
+# 新建日志文件保存路径，默认情况下当某个日志文件夹大小超过100MB时，会删除其中
+# 距今最久的日志，可在ustc_grab_runner.sh中修改大小
+sudo mkdir -p /var/log/ustc_grab/{error,update,main}
+```
+
+```bash
+# 添加执行权限
+# 如果其中路径有变化需要自行替换
+sudo chmod +x ustc_grab_runner.sh
+```
+
+```bash
+# 添加服务
+# 如果ustc-grab.service文件中的路径有变化需要自行替换
+sudo cp ustc-grab.service /etc/systemd/system/
+```
+
+```bash
+# 重新加载 systemd 配置
+sudo systemctl daemon-reload
+
+# 启用开机启动  
+sudo systemctl enable ustc-grab.service
+
+# 立即启动服务
+sudo systemctl start ustc-grab.service
+```
+
+```bash
+# 查看服务状态
+sudo systemctl status ustc-grab.service
+
+# 实时查看服务日志
+sudo journalctl -u ustc-grab.service -f
+
+# 查看自定义日志文件
+tail -f /var/log/ustc_grab/main/yyyy-MM-dd_HH-mm-ss.log
+tail -f /var/log/ustc_grab/update/yyyy-MM-dd_HH-mm-ss.log
+tail -f /var/log/ustc_grab/error/yyyy-MM-dd_HH-mm-ss.log
+```
+
+```bash
+# 停止或重启服务（可选）
+sudo systemctl stop ustc-grab.service
+sudo systemctl restart ustc-grab.service
 ```
 
