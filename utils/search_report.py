@@ -169,7 +169,7 @@ def filter_and_write_reports(
 
 
 def search_report_and_write():
-    print("正在向 USTC 研究生报到系统发送过滤请求（计算机、软件学院等）...")
+    print("正在向 USTC 研究生综合服务平台发送查询报告请求（计算机、软件学院等）...")
     post_flag, post_result = fetch_filtered_data()
     has_searched_useful_courses = False
     if post_flag:
