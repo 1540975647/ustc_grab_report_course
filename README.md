@@ -122,6 +122,7 @@ particular_course:
 
 **注意**：最后一个课程后不要添加`,`
 ```bash
+cp exclude.template.json exclude.json
 vim exclude.json
 ```
 
