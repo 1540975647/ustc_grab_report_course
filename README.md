@@ -210,9 +210,9 @@ sudo systemctl status ustc-grab.service
 sudo journalctl -u ustc-grab.service -f
 
 # 查看自定义日志文件
-tail -f /var/log/ustc_grab/main/yyyy-MM-dd_hh-mm-ss.txt
-tail -f /var/log/ustc_grab/update/yyyy-MM-dd_hh-mm-ss.txt
-tail -f /var/log/ustc_grab/error/yyyy-MM-dd_hh-mm-ss.txt
+tail -f /var/log/ustc_grab/main/yyyy-MM-dd_HH-mm-ss.txt
+tail -f /var/log/ustc_grab/update/yyyy-MM-dd_HH-mm-ss.txt
+tail -f /var/log/ustc_grab/error/yyyy-MM-dd_HH-mm-ss.txt
 ```
 
 ```bash
