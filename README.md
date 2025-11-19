@@ -56,7 +56,10 @@ handle_post_result.py
 
 ### 3. 使用方式
 
+`Python`版本推荐`>=3.9`
+
 #### 3.1 下载到本地
+
 ```bash
 sudo pip install PyYAML python-dotenv requests             # 安装依赖
 ```
