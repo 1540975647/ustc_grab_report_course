@@ -14,10 +14,12 @@ Description:
 import requests
 import json
 import update_weu
+
+from utils.withdraw_exclude_courses import SearchExcludeCourses
 from datetime import datetime
 from typing import List, Dict, Any
 from settings import headers, cookies, query_string, url, timeout
-from settings import COURSE_FILE, EXCLUDE_FILE, EXCLUDE_BGBM
+from settings import COURSE_FILE
 
 
 # ==================== 配置区域 ====================
@@ -144,8 +146,7 @@ def filter_and_write_reports(
 
         # --- 条件 4： 该BGBM 存在于排除序列(exclude.json)中
         try:
-            with open(EXCLUDE_FILE, 'r', encoding='utf-8') as f:
-                exclude_bgbms = json.load(f).get(EXCLUDE_BGBM, [])  # 默认空列表防 None
+            exclude_bgbms = SearchExcludeCourses().search_exclude_courses()
             if bgbm in exclude_bgbms:  # 直接使用 in 操作符，简洁高效
                 print(f"包含排除文件里的课程，课程号：{bgbm}，课程主题：{bgtmzw}")
                 continue

@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 
 # main.py
-from utils import search_report, grab_courses, send_success_email, send_fail_email, handle_post_result
+# import
+from utils import search_report, grab_courses, send_success_email, send_fail_email, handle_post_result, withdraw_exclude_courses
 from time import sleep
 import random
 
 def runAll():
     sleep(random.randint(0, 10))
     # 示例：发送查询课程请求
+    withdraw_exclude_courses.SearchExcludeCourses().withdraw_exclude_courses()
     has_searched_useful_courses, post_result = search_report.search_report_and_write()
     if handle_post_result(post_result):
         send_fail_email(post_result)

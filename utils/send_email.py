@@ -74,5 +74,26 @@ def send_fail_email(post_result: str):
     build_email_and_send(subject, html)
 
 
+def send_withdraw_exclude_course_success(report_item: dict):
+    # 发送退课成功邮件（HTML 格式）
+    subject = "查询到已选择排除的课程，已经退课"
+
+    bgtmzw = report_item.get("BGTMZW", "未知")
+    bgsj = report_item.get("BGSJ", "未知")
+    dd = report_item.get("DD", "未知")
+    bgbm = report_item.get("BGBM", "未知")
+    yxdm_display = report_item.get("YXDM_DISPLAY", "未知")
+
+    html = f"""
+        <h2>恭喜！选课成功</h2>
+        <p><strong>报告主题：</strong>{bgtmzw}</p>
+        <p><strong>开课院系：</strong>{yxdm_display}</p>
+        <p><strong>报告地点：</strong>{dd}</p>
+        <p><strong>报告时间：</strong>{bgsj}</p>
+        <p><strong>课程代码：</strong>{bgbm}</p>
+        <p><em>时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</em></p>
+        """
+    build_email_and_send(subject, html)
+
 if __name__ == '__main__':
     print("sending email...")

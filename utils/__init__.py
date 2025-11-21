@@ -6,6 +6,7 @@ from .search_report import search_report_and_write
 from .grab_courses import grab_courses  # 假设函数在此文件中
 from .send_email import send_success_email, send_fail_email  # 假设函数在此文件中
 from .handle_post_result import handle_post_result
+from .withdraw_exclude_courses import SearchExcludeCourses
 
 # 重新导出为更简洁的名称（可选）
 search_report = type('obj', (), {})()  # 创建伪对象
@@ -17,7 +18,9 @@ __all__ = [
     'grab_courses',
     'send_success_email',
     'send_fail_email',
-    'handle_post_result'
+    'handle_post_result',
+    'withdraw_exclude_courses',
+    'SearchExcludeCourses'
 ]
 
 # __all__ = ["search_report_and_write",
