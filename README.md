@@ -105,7 +105,7 @@ cookies:
   GS_SESSIONID: xxxxxxxxxxxxxxxxxxxxx                         # 必须修改
   EMAP_LANG: zh                                               # 非必须
   THEME: blue                                                 # 非必须
-  _WEU: xxxxxxxxxxxxxxxxxxxxx                                 # 必须定时修改(可使用main_upadte_weu.py)
+  _WEU: xxxxxxxxxxxxxxxxxxxxx                                 # 必须定时修改(可使用main_update_weu.py)
   route: xxxxxxxxxxxxxxxxxxxxx                                # 必须修改
 ```
 
