@@ -4,17 +4,11 @@
 # build_query_string.py
 import yaml
 import json
-from settings import CONFIG_YAML_PATH
+from settings import data_raw
 from urllib.parse import quote
 
 
-def build_query_string(config_path=CONFIG_YAML_PATH):
-    # 读取 YAML 文件
-    with open(config_path, 'r', encoding='utf-8') as f:
-        config = yaml.safe_load(f)
-
-    data_raw = config.get('data-raw', {})
-
+def build_unselected_query_string():
     params = []
 
     # 遍历 data-raw 中的每个键值对
@@ -29,6 +23,19 @@ def build_query_string(config_path=CONFIG_YAML_PATH):
             encoded_value = quote(str(value))
             params.append(f"{key}={encoded_value}")
 
+    # 拼接为最终字符串
+    query_string = "&".join(params)
+    return query_string
+
+def build_selected_query_string():
+    params = []
+    for key, value in data_raw.items():
+        if key == 'querySetting':
+            # 什么都不做
+            continue
+        else:
+            encoded_value = quote(str(value))
+            params.append(f"{key}={encoded_value}")
     # 拼接为最终字符串
     query_string = "&".join(params)
     return query_string

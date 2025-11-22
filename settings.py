@@ -46,11 +46,10 @@ urls: Dict[str, str] = _yaml_data.get("urls", {})
 url = {k: f"{base_url}/{v}" for k, v in urls.items()}
 # 过期时间
 timeout: int = _yaml_data.get("timeout")
-# 构建查询字符串
-import build_query_string
-query_string = build_query_string.build_query_string()
-#特定抢课退课
+# 特定抢课退课
 particular_course = _yaml_data.get("particular_course").get("BGBM")
 # 保活时退课与选课之间的间隔（秒）
 interval: int = _yaml_data.get("interval")
+# 发送请求时的参数
+data_raw = _yaml_data.get("data_raw")
 

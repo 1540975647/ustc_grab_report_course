@@ -5,10 +5,10 @@ import json
 import requests
 
 # utils/withdraw_exclude_courses.py
-import utils.send_email
 import update_weu
+import build_query_string
 from settings import *
-from utils import send_email
+from utils.send_email import send_withdraw_exclude_course_success
 from utils.withdraw_particular_course import withdraw_particular_course
 
 class SearchExcludeCourses:
@@ -20,13 +20,14 @@ class SearchExcludeCourses:
 
     def __init__(self):
         self.exclude_courses = []
+        self.selected_courses_json = []
 
 
     # 查询已经选择的课程
     def search_selected_courses(self):
 
         session = requests.Session()
-
+        query_string = build_query_string.build_selected_query_string()
         # print(query_string)
         # print(url.get("withdraw_courses"))
         try:
@@ -79,13 +80,14 @@ class SearchExcludeCourses:
                 self.exclude_courses = []
         return self.exclude_courses
 
+
     def withdraw_exclude_courses(self):
         self.exclude_courses = self.search_exclude_courses()
         success, self.selected_courses_json = self.search_selected_courses()
 
         if not success:
             # 查询已选课程失败，直接结束
-            return
+            return False
 
         # 查询已选课程成功
         for exclude_course in self.exclude_courses:
@@ -94,7 +96,9 @@ class SearchExcludeCourses:
                     # 需要退课
                     print(f"查询到已选择的排除项：{exclude_course}")
                     if withdraw_particular_course(exclude_course):
-                        send_email.send_withdraw_exclude_course_success(selected_course_json)
+                        send_withdraw_exclude_course_success(selected_course_json)
+
+        return True
 
 if __name__ == "__main__":
     SearchExcludeCourses().withdraw_exclude_courses()

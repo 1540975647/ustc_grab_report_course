@@ -18,7 +18,8 @@ import update_weu
 from utils.withdraw_exclude_courses import SearchExcludeCourses
 from datetime import datetime
 from typing import List, Dict, Any
-from settings import headers, cookies, query_string, url, timeout
+import build_query_string
+from settings import headers, cookies, url, timeout
 from settings import COURSE_FILE
 
 
@@ -32,9 +33,10 @@ def fetch_filtered_data():
     """
     session = requests.Session()
 
+    query_string = build_query_string.build_unselected_query_string()
     try:
         response = session.post(
-            url=url.get("search_report"),
+            url=url.get("search_unselected_report"),
             headers=headers,
             cookies=cookies,
             data=query_string,
