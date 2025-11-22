@@ -3,7 +3,7 @@
 
 # main.py
 # import
-from utils import search_report, grab_courses, send_success_email, send_fail_email, handle_post_result, withdraw_exclude_courses
+from utils import search_unselected_report, grab_courses, send_success_email, send_fail_email, handle_post_result, withdraw_exclude_courses
 from time import sleep
 import random
 
@@ -11,7 +11,7 @@ def runAll():
     sleep(random.randint(0, 10))
     # 示例：发送查询课程请求
     withdraw_exclude_courses.SearchExcludeCourses().withdraw_exclude_courses()
-    has_searched_useful_courses, post_result = search_report.search_report_and_write()
+    has_searched_useful_courses, post_result = search_unselected_report.search_report_and_write()
     if handle_post_result(post_result):
         send_fail_email(post_result)
     if not has_searched_useful_courses:
@@ -24,7 +24,7 @@ def runAll():
             if not grab_success:
                 return
             send_success_email(first_item)
-            search_report.search_report_and_write()
+            search_unselected_report.search_report_and_write()
 
     except FileNotFoundError:
         print("课程文件未找到")
