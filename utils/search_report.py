@@ -10,7 +10,7 @@ from settings import *
 
 def search_report(search_type, query_string) -> tuple:
     """
-    发送带院系过滤条件的 POST 请求，返回响应数据。
+    发送 POST 请求，返回响应数据。
     """
 
     session = requests.Session()
