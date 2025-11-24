@@ -15,7 +15,8 @@ def build_query_string(need_query_setting: bool):
             # 其他字段直接编码（支持布尔值自动转字符串）
             encoded_value = quote(str(value))
             params.append(f"{key}={encoded_value}")
-        elif key == 'querySetting' and need_query_setting:
+        elif need_query_setting:
+            # 当前字段是querySetting且需要拼接
             # querySetting 是列表，需要 JSON 序列化后 URL 编码
             query_json = json.dumps(value, ensure_ascii=False)
             encoded_query = quote(query_json)
