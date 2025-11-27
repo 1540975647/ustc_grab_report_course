@@ -43,7 +43,7 @@ headers: Dict[str, str] = _yaml_data.get("headers", {})
 # url
 base_url = _yaml_data.get("base_url", "")
 urls: Dict[str, str] = _yaml_data.get("urls", {})
-url = {k: f"{base_url}/{v}" for k, v in urls.items()}
+url = {k: f"{base_url}{v}" for k, v in urls.items()}
 # 过期时间
 timeout: int = _yaml_data.get("timeout")
 # 特定抢课退课
