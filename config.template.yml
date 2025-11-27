@@ -11,6 +11,16 @@ email:
     port: 465
     # SMTP邮件服务器密钥
     auth_code: xxxxxxxxxxxxxxxxxxxxx                          # 必须修改
+cookies:
+  GS_DBLOGIN_TOKEN: xxxxxxxxxxxxxxxxxxxxx                     # 必须修改
+  GS_SESSIONID: xxxxxxxxxxxxxxxxxxxxx                         # 必须修改
+  EMAP_LANG: zh                                               # 非必须
+  THEME: blue                                                 # 非必须
+  _WEU: xxxxxxxxxxxxxxxxxxxxx                                 # 必须定时修改(可使用main_update_weu.py)
+  route: xxxxxxxxxxxxxxxxxxxxx                                # 必须修改
+particular_course:
+  # 用于保活cookie中_WEU字段的特殊课程编号
+  BGBM: xxxxxxxxxxxxxxxxxxxxx                                 # 建议设为一个真实的可选人数多且过期距今较久的课程
 headers:
   accept: '*/*'
   accept-language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5
@@ -31,9 +41,9 @@ retry_attempts: 3
 base_url: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc
 urls:
   search_unselected_report: /modules/xsbgxk/wxbgbgdz.do
+  search_selected_report: /modules/xsbgxk/yxbgbgdz.do
   grab_courses: /xsbgxkController/selectBg.do
   withdraw_courses: /xsbgxkController/cancelBg.do
-  search_selected_report: /modules/xsbgxk/yxbgbgdz.do
 data_raw:
   # 分页查询条件信息
   '*order': -BGSJ
@@ -55,14 +65,4 @@ data_raw:
     builder: equal
   pageSize: 100
   pageNumber: 1
-cookies:
-  GS_DBLOGIN_TOKEN: xxxxxxxxxxxxxxxxxxxxx                     # 必须修改
-  GS_SESSIONID: xxxxxxxxxxxxxxxxxxxxx                         # 必须修改
-  EMAP_LANG: zh                                               # 非必须
-  THEME: blue                                                 # 非必须
-  _WEU: xxxxxxxxxxxxxxxxxxxxx                                 # 必须定时修改(可使用main_update_weu.py)
-  route: xxxxxxxxxxxxxxxxxxxxx                                # 必须修改
-particular_course:
-  # 用于保活cookie中_WEU字段的特殊课程编号
-  BGBM: xxxxxxxxxxxxxxxxxxxxx                                 # 建议设为一个真实的可选人数多且过期距今较久的课程
 interval: 30
