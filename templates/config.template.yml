@@ -1,3 +1,5 @@
+# 是否开启成绩自动查询 (默认关闭)
+enable_grade_check: false
 email:
   # 邮件发送人
   sender: xx@xx.com                                           # 必须修改
@@ -12,7 +14,7 @@ email:
     # SMTP邮件服务器密钥
     auth_code: xxxxxxxxxxxxxxxxxxxxx                          # 必须修改
 headers:
-  accept: '*/*'
+  accept: application/json, text/javascript, */*; q=0.01
   accept-language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5
   content-type: application/x-www-form-urlencoded; charset=UTF-8
   origin: https://yjs1.ustc.edu.cn
@@ -26,14 +28,21 @@ headers:
   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
     like Gecko) Chrome/141.0.0.0 Safari/537.36
   x-requested-with: XMLHttpRequest
+# 针对不同应用的特定 Header (如 Referer)
+app_specific_headers:
+  xsbg:
+    referer: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc/*default/index.do
+  wdcj:
+    referer: https://yjs1.ustc.edu.cn/gsapp/sys/wdcjapp/*default/index.do
 timeout: 10
 retry_attempts: 3
-base_url: https://yjs1.ustc.edu.cn/gsapp/sys/xsbgglappustc
+base_url: https://yjs1.ustc.edu.cn/gsapp/sys
 urls:
-  search_unselected_report: /modules/xsbgxk/wxbgbgdz.do
-  grab_courses: /xsbgxkController/selectBg.do
-  withdraw_courses: /xsbgxkController/cancelBg.do
-  search_selected_report: /modules/xsbgxk/yxbgbgdz.do
+  search_unselected_report: /xsbgglappustc/modules/xsbgxk/wxbgbgdz.do
+  grab_courses: /xsbgglappustc/xsbgxkController/selectBg.do
+  withdraw_courses: /xsbgglappustc/xsbgxkController/cancelBg.do
+  search_selected_report: /xsbgglappustc/modules/xsbgxk/yxbgbgdz.do
+  check_grade: /wdcjapp/modules/wdcj/xscjcx.do
 data_raw:
   # 分页查询条件信息
   '*order': -BGSJ
@@ -43,7 +52,9 @@ data_raw:
     linkOpt: AND
     builderList: cbl_m_List
     builder: m_value_equal
+    # 院系编号，多个用逗号分隔（院系编号必须和院系名称一一对应，要修改必须同时修改）
     value: 011,023,201,210,219,221,225,226,229,A13,A14
+    # 院系名称，多个用逗号分隔
     value_display: 计算机科学与技术学院,电子科学与技术系,研究生院,信息科学技术学院,微电子学院,网络空间安全学院,软件学院,苏州研究生院,人工智能与数据科学学院,软件学院合肥,软件学院苏州
   - name: '*order'
     value: -BGSJ
@@ -54,6 +65,10 @@ data_raw:
     linkOpt: AND
     builder: equal
   pageSize: 100
+  pageNumber: 1
+grade_data:
+  querySetting: []
+  pageSize: 20
   pageNumber: 1
 cookies:
   GS_DBLOGIN_TOKEN: xxxxxxxxxxxxxxxxxxxxx                     # 必须修改

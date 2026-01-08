@@ -5,11 +5,14 @@ Wants=network.target
 
 [Service]
 Type=simple
-User=root
-# 工作路径
-WorkingDirectory=/root/ustc_grab_report_course
-# ustc_grab_runner.sh脚本路径
-ExecStart=/root/ustc_grab_report_course/ustc_grab_runner.sh
+[Service]
+Type=simple
+# 建议使用专用系统用户运行
+User=ustc-grab
+# 推荐部署到 /etc 目录
+WorkingDirectory=/etc/ustc_grab_report_course
+# 脚本路径
+ExecStart=/etc/ustc_grab_report_course/scripts/ustc_grab_runner.sh
 Restart=always
 RestartSec=5
 StandardOutput=journal
@@ -20,9 +23,9 @@ Environment=PYTHONUNBUFFERED=1
 NoNewPrivileges=yes
 PrivateTmp=yes
 ProtectSystem=strict
-ProtectHome=no
-# 读写路径
-ReadWritePaths=/root/ustc_grab_report_course /var/log/ustc_grab
+ProtectHome=yes
+# 读写路径 (需确保该用户对日志目录有写权限)
+ReadWritePaths=/etc/ustc_grab_report_course /var/log/ustc_grab
 
 [Install]
 WantedBy=multi-user.target

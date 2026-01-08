@@ -1,8 +1,14 @@
 #!/bin/bash
+
+# 获取脚本所在目录的上一级目录（也就是项目根目录）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
 # === 配置区 ===
-PYTHON="/usr/bin/python3"
-MAIN_PY="/root/ustc_grab_report_course/main.py"
-UPDATE_PY="/root/ustc_grab_report_course/main_update_weu.py"
+# 优先使用项目内的虚拟环境
+PYTHON="$PROJECT_ROOT/venv/bin/python"
+MAIN_PY="$PROJECT_ROOT/main.py"
+UPDATE_PY="$PROJECT_ROOT/main_update_weu.py"
 
 BASE_LOG_DIR="/var/log/ustc_grab"
 MAIN_LOG_DIR="$BASE_LOG_DIR/main"
@@ -11,6 +17,7 @@ ERR_LOG_DIR="$BASE_LOG_DIR/error"
 
 MAX_SIZE_MB=100  # 每个子目录最大允许大小
 
+# 尝试创建日志目录（需要写权限）
 mkdir -p "$MAIN_LOG_DIR" "$UPDATE_LOG_DIR" "$ERR_LOG_DIR"
 
 # 检查 Python 路径
@@ -52,12 +59,13 @@ while true; do
     ERR_LOG="$ERR_LOG_DIR/$timestamp.txt"
 
     # 每分钟执行一次 main.py
-    "$PYTHON" "$MAIN_PY" >> "$MAIN_LOG" 2>>"$ERR_LOG"
+    # 使用 tee 实现双重输出：既写入日志文件，又输出到 stdout/stderr (从而被 journald 捕获)
+    "$PYTHON" "$MAIN_PY" > >(tee -a "$MAIN_LOG") 2> >(tee -a "$ERR_LOG" >&2)
 
     # 每30分钟执行一次 main_update_weu.py
     if (( minute_counter == 0 )); then
         UPDATE_LOG="$UPDATE_LOG_DIR/$timestamp.txt"
-        "$PYTHON" "$UPDATE_PY" >> "$UPDATE_LOG" 2>>"$ERR_LOG"
+        "$PYTHON" "$UPDATE_PY" > >(tee -a "$UPDATE_LOG") 2> >(tee -a "$ERR_LOG" >&2)
         cleanup_logs "$UPDATE_LOG_DIR"
     fi
 
